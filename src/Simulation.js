@@ -12,7 +12,7 @@ import {
 import Layout from './components/Layout';
 import Graph from './components/Graph';
 import Settings from './components/Settings';
-import { weightedRandom, rangeBetween } from './utils';
+import { weightedRandom, rangeBetween, findEdges } from './utils';
 
 
 function randomConsciousness(avarage) {
@@ -38,27 +38,27 @@ export default class App extends Component {
     this.run = this.run.bind(this);
     this.handleReset = this.handleReset.bind(this);
     
-    const graph = randomgraph.ErdosRenyi.np(270, 0.008);
     const avarageConsciousness = 0.2;
+
+    const { graphData: graph } = this.props;
 
     this.state = {
       avarageConsciousness,
       simulationState: INITIAL,
-      nodes: graph.nodes.map(({ label }) => ({
-        id: label,
-        state: IDLE,
-        size: graph.edges.filter(
-          ({ source, target }) => (
-            graph.nodes[source].label === label ||
-            graph.nodes[target].label === label
-          )
-        ).length,
-        consciousness: randomConsciousness(avarageConsciousness),
+      edges: graph.edges.map(edge => ({
+        source: edge['from'],
+        target: edge['to'],
+        directed: edge['directed'],
       })),
-      edges: graph.edges.map(({ source, target }) => ({
-        source: graph.nodes[source].label,
-        target: graph.nodes[target].label,
-      })),
+      nodes: graph.nodes.map(
+        ({ id, label }) => ({
+          id,
+          label,
+          state: IDLE,
+          size: findEdges(graph.edges, id).length,
+          consciousness: randomConsciousness(avarageConsciousness),
+        })
+      ),
     };
   }
 

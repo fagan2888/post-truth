@@ -35,3 +35,9 @@ export function shade(value) {
 export function padding(value, max, padded) {
   return Math.min(Math.max(padded, value), max - 50);
 }
+
+export function findEdges(edges, sourceId) {
+  return edges.filter(
+    ({ from }) => from === sourceId
+  );
+}

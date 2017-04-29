@@ -58,7 +58,7 @@ export default class Graph extends Component {
   }
 
   componentWillUnmount() {
-    this.simulation.off('tick', this.handleTick);
+    this.simulation.stop();
   }
 
   handleTick() {
