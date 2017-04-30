@@ -1,0 +1,23 @@
+npm-graph:
+    model: "Module -DEPENDS-> Module"
+    directed: "true"
+    infection_property: "Breaking change"
+    infection_bias: "Package update frequency"
+
+celebrities-graph:
+    model: "Person -had a relationship with- Person"
+    directed: "false"
+    infection_property: "Has sexually transmitted disease (STD)"
+    infection_bias: "Susceptibility to STD"
+
+designtennis-graph:
+    model: "Person -COLLABORATED WITH- Person"
+    directed: "false"
+    infection_property: "Using design style X"
+    infection_bias: "Awareness of trends"
+
+refugees-graph:
+    model: "Place -Refugees-> Place"
+    directed: "true"
+    infection_property: "Refugees welcomed"
+    infection_bias: "Welcoming of refugees / Inclusiveness"
