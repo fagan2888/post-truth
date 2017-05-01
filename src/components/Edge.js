@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { padding } from '../utils';
+import { padding, shade } from '../utils';
 import { IDLE } from '../constants';
 
 export default function Edge({
@@ -21,6 +21,19 @@ export default function Edge({
     return <g></g>;
   }
 
+  const isInfected = (
+    targetNode.state !== IDLE ||
+    sourceNode.state !== IDLE
+  );
+
+  const strokeColor = (
+    isInfected
+      ? '#ff9780'
+      : isCurrent
+          ? 'gray'
+          : '#c4c6c4'
+  );
+
   return (
     <g key={ `${source.id}-${target.id}` }>
       <line
@@ -28,7 +41,7 @@ export default function Edge({
         y1={ padding(source.y, height, 30) } 
         x2={ padding(target.x, width, 7) }
         y2={ padding(target.y, height, 30) }
-        stroke={ isCurrent ? 'gray' : '#c4c6c4' }
+        stroke={ strokeColor }
         strokeWidth={ isCurrent ? 2 : 0.8 }
       />
     </g>

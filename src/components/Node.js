@@ -21,12 +21,16 @@ export default function Node({
     [styles.ignored]: node.state === IGNORED
   });
 
+  const isCurrent = current === node.id;
+  const radius = (isCurrent ? 8 : 6) + node.size;
+
   return (
     <g key={ `${node.id}-Node` } transform={ transform }>
       <circle
         className={ classes }
-        r={ (current === node.id ? 12 : 6) + node.size }
-        stroke={ 2 }
+        r={ radius }
+        stroke={ isCurrent ? 'white' : null }
+        strokeWidth={ 2 }
         onMouseOver={ onSetCurrent(node.id) }
         onMouseOut={ onSetCurrent(null) }
         onClick={ onPublish(node.id) }

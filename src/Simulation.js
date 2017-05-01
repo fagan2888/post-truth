@@ -51,7 +51,7 @@ export default class App extends Component {
         directed: edge['directed'],
       })),
       nodes: graph.nodes.map(
-        ({ id, label }) => ({
+        ({ id, name: label }) => ({
           id,
           label,
           state: IDLE,
@@ -93,20 +93,23 @@ export default class App extends Component {
     );
 
     const outbound = edges.filter(
-      ({ source }) => forwardedIds.indexOf(source.id) > -1
+      ({ source, directed }) => (
+        forwardedIds.indexOf(source.id) > -1 ||
+        !directed
+      )
     ).map(
       ({ target }) => target.id
     );
 
-    const inbound = edges.filter(
-      ({ target }) => forwardedIds.indexOf(target.id) > -1
-    ).map(
-      ({ source }) => source.id
-    );
+    // const inbound = edges.filter(
+    //   ({ target }) => (
+    //     forwardedIds.indexOf(target.id) > -1
+    //   )
+    // ).map(
+    //   ({ source }) => source.id
+    // );
 
-    const undirected = outbound.concat(
-      inbound
-    ).filter(
+    const union = outbound.filter(
       nodeId => this.getNodeById(nodeId).state === IDLE
     );
 
@@ -114,7 +117,7 @@ export default class App extends Component {
 
     this.setState({
       nodes: nodes.map(
-        node => undirected.indexOf(node.id) > -1 ? ({
+        node => union.indexOf(node.id) > -1 ? ({
           ...node,
           state: weightedRandom([
             [node.consciousness, IGNORED],
@@ -124,7 +127,7 @@ export default class App extends Component {
       ),
     })
 
-    if (undirected.length) {
+    if (union.length) {
       this.timeout = setTimeout(this.run, FPS)
     };
   }

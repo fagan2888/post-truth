@@ -2,9 +2,29 @@
   padding: 0 5px 10px;
   margin: 0 20px;
   color: black;
-  border-bottom: 3px solid gray;
+  border-bottom: 3px solid #dedede;
 }
 
 .container select {
   margin-left: 10px;
+}
+
+.container ul {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.container li {
+  list-style: none;
+  margin: 0;
+  padding: 5px 20px;
+}
+
+.container li span {
+  color: black;
+}
+
+.container li strong {
+  color: gray;
+  font-weight: normal;
 }

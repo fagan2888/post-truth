@@ -43,8 +43,8 @@ export default class Graph extends Component {
     const simulation = this.simulation = (
       forceSimulation(nodes)
         .force('link', forceLink().id(node => node.id))
-        .force('charge', forceManyBody())
-        .force('collide', forceCollide(() => 10).iterations(2))
+        .force('charge', forceManyBody().strength(30))
+        .force('collide', forceCollide(() => 20).iterations(50))
         .force('center', forceCenter(width / 2, height / 2))
     );
 
@@ -92,6 +92,8 @@ export default class Graph extends Component {
     const { nodes, edges, width, height, onPublish } = this.props;
     const { layout, current } = this.state;
 
+    const currentNode = layout[current];
+
     return (
       <svg width={ width } height={ height } style={{
         shapeRendering: 'geometricPrecision',
@@ -134,6 +136,19 @@ export default class Graph extends Component {
             { ...node }
           />
         ) }
+
+        { current && (
+          <text
+            x={ currentNode.x }
+            y={ currentNode.y + 2 }
+            fontSize={ 10 }
+            style={{
+              pointerEvents: 'none'
+            }}
+          >
+            { currentNode.label }
+          </text>
+        ) }
       </svg>
     );
   }
@@ -141,7 +156,7 @@ export default class Graph extends Component {
 
 Graph.defaultProps = {
   width: 900,
-  height: 600,
+  height: 900,
   nodes: [],
   edges: [],
 };

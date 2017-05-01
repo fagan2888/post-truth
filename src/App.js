@@ -5,20 +5,23 @@ import GraphSelect from './components/GraphSelect';
 import Loading from './components/Loading';
 
 const GRAPHS = {
-  'celebrities-graph.json': 'Celebrities',
-  'designtennis-graph.json': 'Design Tennis',
-  'npm-graph.json': 'NPM Graph',
-  'refugees-graph.json': 'Refuuges',
+  'celebrities-graph': 'Celebrities',
+  'designtennis-graph': 'Design Tennis',
+  'npm-graph': 'NPM Graph',
+  'refugees-graph': 'Refuuges',
 };
+
+const BASE = 'https://graphcommons.github.io/post-truth';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      graphData: null,
+      graphData: {},
+      graphMeta: {},
       loading: true,
-      selectedGraph: 'refugees-graph.json',
+      selectedGraph: 'refugees-graph',
     };
 
     this.handleGraphChange = this.handleGraphChange.bind(this);
@@ -26,6 +29,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this.fetchGraph();
+    this.fetchMeta();
   }
 
   handleGraphChange(event) {
@@ -39,7 +43,7 @@ export default class App extends Component {
     const { selectedGraph } = this.state;
 
     fetch(
-      `https://graphcommons.github.io/post-truth/data/${selectedGraph}`
+      `${BASE}/data/${selectedGraph}.json`
     ).then(
       response => 
         response.json()
@@ -52,13 +56,30 @@ export default class App extends Component {
     );
   }
 
+  fetchMeta() {
+    const { selectedGraph } = this.state;
+
+    fetch(
+      `${BASE}/data/graphs.json`
+    ).then(
+      response => 
+        response.json()
+    ).then(
+      response => 
+        this.setState({
+          graphMeta: response
+        })
+    );
+  }
+
   render() {
-    const { graphData, loading, selectedGraph } = this.state;
+    const { graphData, loading, selectedGraph, graphMeta } = this.state;
     return (
       <div>
         <GraphSelect
           dataset={ GRAPHS }
           value={ selectedGraph }
+          meta={ graphMeta[selectedGraph] }
           onChange={ this.handleGraphChange }
         />
         {
