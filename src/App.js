@@ -39,7 +39,7 @@ export default class App extends Component {
     const { selectedGraph } = this.state;
 
     fetch(
-       `/data/${selectedGraph}`
+      `https://graphcommons.github.io/post-truth/data/${selectedGraph}`
     ).then(
       response => 
         response.json()
