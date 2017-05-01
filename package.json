@@ -34,6 +34,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.6",
     "react-color": "^2.11.1",
     "react-dom": "^0.14.6"

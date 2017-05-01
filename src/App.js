@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
 
 import Simulation from './Simulation';
 import GraphSelect from './components/GraphSelect';
