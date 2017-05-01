@@ -2,25 +2,25 @@
   "npm-graph": {
     "model": "Module -DEPENDS-> Module",
     "directed": "true",
-    "infection_property": "Breaking change",
-    "infection_bias": "Package update frequency"
+    "infection_min": "Package frequently updated",
+    "infection_max": "Package rarely updated"
   },
   "celebrities-graph": {
     "model": "Person -had a relationship with- Person",
     "directed": "false",
-    "infection_property": "Has sexually transmitted disease (STD)",
-    "infection_bias": "Susceptibility to STD"
+    "infection_min": "Unprotected for STD",
+    "infection_max": "Protected for STD"
   },
   "designtennis-graph": {
     "model": "Person -COLLABORATED WITH- Person",
     "directed": "false",
-    "infection_property": "Using design style X",
-    "infection_bias": "Awareness of trends"
+    "infection_min": "Awareness of trends",
+    "infection_max": "Unwwareness of trends"
   },
   "refugees-graph": {
     "model": "Place -Refugees-> Place",
     "directed": "true",
-    "infection_property": "Refugees welcomed",
-    "infection_bias": "Welcoming of refugees / Inclusiveness"
+    "infection_min": "Refugees welcomed",
+    "infection_max": "Refugees not welcomed"
   }
 }
