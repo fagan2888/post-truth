@@ -2,25 +2,37 @@
   "npm-graph": {
     "model": "Module -DEPENDS-> Module",
     "directed": "true",
-    "infection_min": "Package frequently updated",
-    "infection_max": "Package rarely updated"
+    "infection_name": "Broken software package propagation",
+    "infection_min": "Strong Depedency",
+    "infection_max": "Weak Depedency",
+    "graph_name": "NPM Dependency Network",
+    "graph_url": "https://graphcommons.com/graphs/a7ec343d-2a0c-47bb-9658-bb8315e8a096"
   },
   "celebrities-graph": {
     "model": "Person -had a relationship with- Person",
     "directed": "false",
-    "infection_min": "Unprotected for STD",
-    "infection_max": "Protected for STD"
+    "infection_name": "STD infection",
+    "infection_min": "Unprotected",
+    "infection_max": "Protected",
+    "graph_name": "Rumored relationships among celebrities",
+    "graph_url": "https://graphcommons.com/graphs/cc044ceb-6876-4385-b785-28e39f44c11f"
   },
   "designtennis-graph": {
     "model": "Person -COLLABORATED WITH- Person",
     "directed": "false",
-    "infection_min": "Awareness of trends",
-    "infection_max": "Unwwareness of trends"
+    "infection_name": "Reaction to a new design trend",
+    "infection_min": "Adapt",
+    "infection_max": "Dismiss",
+    "graph_name": "Network of designer collaborations",
+    "graph_url": "https://graphcommons.com/graphs/695ee11f-bd1c-4051-9790-6fad89e76a11"
   },
   "refugees-graph": {
     "model": "Place -Refugees-> Place",
     "directed": "true",
-    "infection_min": "Refugees welcomed",
-    "infection_max": "Refugees not welcomed"
+    "infection_name": "Transmission of refugee culture",
+    "infection_min": "Welcomed",
+    "infection_max": "Not welcomed",
+    "graph_name": "Refugees movement from country to country (2012 UN data)",
+    "graph_url": "https://graphcommons.com/graphs/31b72429-3804-4ef1-a05f-e77c3165826e"
   }
 }
